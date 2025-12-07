@@ -1,4 +1,10 @@
-const API_BASE = process.env.REACT_APP_API_BASE || '';
+/**
+ * Determine API base URL:
+ * - If REACT_APP_API_BASE is set, use it (e.g., http://localhost:3001/api for local dev).
+ * - Otherwise default to relative "/api" so production/preview can be same-origin
+ *   with the backend behind a reverse proxy or path-based routing.
+ */
+const API_BASE = (process.env.REACT_APP_API_BASE || '/api').replace(/\/+$/, '');
 
 const LOG_LEVEL = (process.env.REACT_APP_LOG_LEVEL || 'info').toLowerCase();
 const FEATURE_FLAGS = (() => {

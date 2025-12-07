@@ -9,6 +9,28 @@ This project provides a minimal React template with a clean, modern UI and minim
 - **Fast**: Minimal dependencies for quick loading times
 - **Simple**: Easy to understand and modify
 
+## Environment & Backend Integration
+
+The frontend communicates with the backend over REST.
+
+- Default behavior uses a relative base path `/api`, which works in production/preview when a reverse proxy serves both frontend and backend from the same origin.
+- For local development against a backend running on port 3001, set:
+  - REACT_APP_API_BASE=http://localhost:3001/api
+
+Copy `.env.example` to `.env` and adjust as needed:
+
+```
+cp .env.example .env
+# edit .env to point to your backend
+```
+
+Available variables:
+- REACT_APP_API_BASE: Backend API base URL (e.g., http://localhost:3001/api). Defaults to `/api` if unset.
+- REACT_APP_LOG_LEVEL: error | warn | info | debug (default: info)
+- REACT_APP_FEATURE_FLAGS: JSON string or comma-separated flags
+
+Note for backend (Spring Boot): ensure CORS allows the frontend origin. The backend should read FRONTEND_ORIGIN (default http://localhost:3000).
+
 ## Getting Started
 
 In the project directory, you can run:
